@@ -55,6 +55,10 @@ final public class ActionPickerViewController: UIViewController {
     }
     
     override public func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        guard !(presentedViewController is UIAlertController) else {
+            presentedViewController?.dismiss(animated: flag, completion: completion)
+            return
+        }
         guard flag else {
             super.dismiss(animated: flag, completion: completion)
             return
